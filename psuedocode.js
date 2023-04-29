@@ -1,33 +1,29 @@
-/*----- constants -----*/
-const colors = {
-    '1' : 'red' , //player
-    '-1' : 'blue' , //cpu
-    '0' : 'grey' //blank 
-}
-
-/*----- state variables -----*/
-let turn; // set turn
-let playerBoard; // set playerboard
-let cpuBoard; // set cpuboard
-let playerScore; // set playerScore
-let cpuScore; // set cpuScore
-let winner; //set winner 
+	// /*----- constants -----*/
+    // set 1 as player 1
+    // set - 1 as CPU
+    // set 0 as neutral
+    
+    //     /*----- state variables -----*/
+    // set turn
+    // set playerboard
+    // set cpuboard
+    // set playerScore
+    // set cpuScore
+    // set winner 
     // set ship class
     //   extend ship class with three types and sizes of ships worth different points
     
-/*----- cached elements  -----*/
-    // set playerScoreEl
-const playerScoreEl = document.querySelector('#playerScore')
-    // set cpuScoreEl
-const cpuScoreEl = document.querySelector('#cpuScore')
+    //     /*----- cached elements  -----*/
+    // set playerScoreBtn
+    // set cpuScoreBtn
     // set playAgainBtn
-const playAgainBtn = document.querySelector('button')
     // set gridButton * Each place on playerBoard needs to be clickable *
-/*----- event listeners -----*/
+    
+    //   /*----- event listeners -----*/
     //   playAgainBtn event listener
     // playerBoardBtn event listeners
     
-/*----- functions -----*/
+    //     /*----- functions -----*/
     // init {
     //   set turn to 1
     //   set values for both boards to zero
@@ -61,5 +57,3 @@ const playAgainBtn = document.querySelector('button')
     //   else change grid color grey
     //   grid click event listener will multiply turn by - 1
     // }
-
-    console.log(playerScore)
