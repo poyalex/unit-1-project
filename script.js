@@ -34,9 +34,9 @@ class Ship {
         this.points = points;
     }
 }
-const boat = new Ship("Boat", 1, 1)
-const warship = new Ship ("Warship", 2, 2)
-const battleship = new Ship ("Battleship", 3, 3)
+const boat = new Ship("Boat", 1, 1);
+const warship = new Ship ("Warship", 2, 2);
+const battleship = new Ship ("Battleship", 3, 3);
 
 console.log (warship)
 
@@ -46,6 +46,72 @@ playAgainBtn.addEventListener('click', begin);
     // playerBoardBtn event listeners
 
 /*----- functions -----*/
+
+//function to generate div elements for board and add event listeners
+function createBoard () {
+    //create the two boards and apend to the section with class boards
+    const sectionPlayerBoard = document.querySelector("#playerBoard");
+    const sectionCpuBoard = document.querySelector("#cpuBoard");
+
+    sectionPlayerBoard.style.background = 'red';
+    sectionCpuBoard.style.background = 'blue';
+
+    //creat board div elements
+    for (i=0; i < 10; i++) {
+        for (i=0; i<10; i++) {
+            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r9`).addEventlistener('click', gridClick)
+            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r9`).addEventlistener('click', gridClick)
+
+        }
+
+        for (i=0; i<10; i++) {
+            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r8`).addEventlistener('click', gridClick)
+            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r8`).addEventlistener('click', gridClick)
+        }
+    
+        for (i=0; i<10; i++) {
+            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r7`).addEventlistener('click', gridClick)
+            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r7`).addEventlistener('click', gridClick)
+        }
+
+        for (i=0; i<10; i++) {
+            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r6`).addEventlistener('click', gridClick)
+            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r6`).addEventlistener('click', gridClick)
+        }
+
+        for (i=0; i<10; i++) {
+            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r5`).addEventlistener('click', gridClick)
+            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r5`).addEventlistener('click', gridClick)
+        }
+    
+        for (i=0; i<10; i++) {
+            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r4`).addEventlistener('click', gridClick)
+            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r4`).addEventlistener('click', gridClick)
+        }
+
+        for (i=0; i<10; i++) {
+            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r3`).addEventlistener('click', gridClick)
+            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r3`).addEventlistener('click', gridClick)
+        }
+    
+        for (i=0; i<10; i++) {
+            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r2`).addEventlistener('click', gridClick)
+            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r2`).addEventlistener('click', gridClick)
+        }
+
+        for (i=0; i<10; i++) {
+            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r1`).addEventlistener('click', gridClick)
+            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r1`).addEventlistener('click', gridClick)
+        }
+
+        for (i=0; i<10; i++) {
+            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r0`).addEventlistener('click', gridClick)
+            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r0`).addEventlistener('click', gridClick)
+        }
+    }
+}
+
+
     // init {
     //   set turn to 1
     //   set values for both boards to zero
@@ -55,29 +121,49 @@ playAgainBtn.addEventListener('click', begin);
     //   player ship location modal
     //   render
     // }
-fucntion createBoard () {
-    const sectionPlayerBoard = document.createElement("section")]
-    const sectionCpuBoard = document.createElement("section")
-    sectionPlayerBoard.setAttribute("id", "playerBoard")
-    sectionCpuBoard.setAttribute("id", "cpuBoard")
-    for (i=0; i < 11; i++) {
-    sectionCpuBoard.createElement(
-
-    )
-    sectionPlayerBoard.createElement(
-        
-    )
-    }
-
-}
 
 function begin () {
     turn = "1";
+    playerBoard = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // C0
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    // R0
+    ];
+
+    cpuBoard = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], //Col 0
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    // R0
+    ];
+
+    winner = null;
+    renderBoard();
 }
+
+begin ()
     // ship location modal {
     //   prompt player to choose ship locations
     //   push to game board
     // }
+function renderBoard() {
+
+}
     
     // winCheck Funciton {
     //   if playerScore > total ship points
@@ -89,7 +175,12 @@ function begin () {
     // cpu 'ai' fuction {
     //   math.random for col indx ref
     // }
-    
+// *********** Need to research .indexOf method ********
+function cpuAi () {
+    if (turn === -1) {
+        
+    }
+}
     // player action function {
     //   grid click event listener will pull grid reference
     //   if === ref 
@@ -97,5 +188,8 @@ function begin () {
     //   else change grid color grey
     //   grid click event listener will multiply turn by - 1
     // }
-
+function gridClick () {
+    if (turn === 1)
+    turn *=-1
+}
     console.log(playerScore)
