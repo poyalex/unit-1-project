@@ -71,6 +71,25 @@ function createBoard () {
             sectionCpuBoard.append(cpuDivEl)
         } 
 
+        for (i=0; i<10; i++) {
+            const playerDivEl = document.createElement("div")
+            playerDivEl.setAttribute("id", `player-c${i}r8`)
+            sectionPlayerBoard.append(playerDivEl)
+
+            const cpuDivEl = document.createElement("div")
+            cpuDivEl.setAttribute("id", `cpu-c${i}r8`)
+            sectionCpuBoard.append(cpuDivEl)
+        } 
+
+        for (i=0; i<10; i++) {
+            const playerDivEl = document.createElement("div")
+            playerDivEl.setAttribute("id", `player-c${i}r7`)
+            sectionPlayerBoard.append(playerDivEl)
+
+            const cpuDivEl = document.createElement("div")
+            cpuDivEl.setAttribute("id", `cpu-c${i}r7`)
+            sectionCpuBoard.append(cpuDivEl)
+        } 
     }
     //Board Css Styling
 }
