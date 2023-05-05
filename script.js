@@ -50,66 +50,31 @@ playAgainBtn.addEventListener('click', begin);
 //function to generate div elements for board and add event listeners
 function createBoard () {
     //create the two boards and apend to the section with class boards
+    // document.querySelector(".boards").addEventListener("click", gridClick)
     const sectionPlayerBoard = document.querySelector("#playerBoard");
     const sectionCpuBoard = document.querySelector("#cpuBoard");
-
     sectionPlayerBoard.style.background = 'red';
     sectionCpuBoard.style.background = 'blue';
+    const divEl = document.createElement("div")
 
-    //creat board div elements
+    //event listeners on  parent boards 
+    //create board div elements
+    // sectionPlayerBoard.append(document.createElement("div").setAttribute("id", `c${i}r9`))
     for (i=0; i < 10; i++) {
         for (i=0; i<10; i++) {
-            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r9`).addEventlistener('click', gridClick)
-            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r9`).addEventlistener('click', gridClick)
+            const playerDivEl = document.createElement("div")
+            playerDivEl.setAttribute("id", `player-c${i}r9`)
+            sectionPlayerBoard.append(playerDivEl)
 
-        }
+            const cpuDivEl = document.createElement("div")
+            cpuDivEl.setAttribute("id", `cpu-c${i}r9`)
+            sectionCpuBoard.append(cpuDivEl)
+        } 
 
-        for (i=0; i<10; i++) {
-            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r8`).addEventlistener('click', gridClick)
-            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r8`).addEventlistener('click', gridClick)
-        }
-    
-        for (i=0; i<10; i++) {
-            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r7`).addEventlistener('click', gridClick)
-            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r7`).addEventlistener('click', gridClick)
-        }
-
-        for (i=0; i<10; i++) {
-            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r6`).addEventlistener('click', gridClick)
-            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r6`).addEventlistener('click', gridClick)
-        }
-
-        for (i=0; i<10; i++) {
-            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r5`).addEventlistener('click', gridClick)
-            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r5`).addEventlistener('click', gridClick)
-        }
-    
-        for (i=0; i<10; i++) {
-            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r4`).addEventlistener('click', gridClick)
-            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r4`).addEventlistener('click', gridClick)
-        }
-
-        for (i=0; i<10; i++) {
-            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r3`).addEventlistener('click', gridClick)
-            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r3`).addEventlistener('click', gridClick)
-        }
-    
-        for (i=0; i<10; i++) {
-            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r2`).addEventlistener('click', gridClick)
-            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r2`).addEventlistener('click', gridClick)
-        }
-
-        for (i=0; i<10; i++) {
-            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r1`).addEventlistener('click', gridClick)
-            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r1`).addEventlistener('click', gridClick)
-        }
-
-        for (i=0; i<10; i++) {
-            sectionCpuBoard.createElement("div").setAttribute("id", `c${i}r0`).addEventlistener('click', gridClick)
-            sectionPlayerBoard.createElement("div").setAttribute("id", `c${i}r0`).addEventlistener('click', gridClick)
-        }
     }
+    //Board Css Styling
 }
+createBoard();
 
 
     // init {
@@ -155,8 +120,8 @@ function begin () {
     winner = null;
     renderBoard();
 }
-
 begin ()
+
     // ship location modal {
     //   prompt player to choose ship locations
     //   push to game board
@@ -189,7 +154,11 @@ function cpuAi () {
     //   grid click event listener will multiply turn by - 1
     // }
 function gridClick () {
-    if (turn === 1)
+    if (turn === 1) {
+    
     turn *=-1
+    } else if (turn === -1) {
+       
+    }
 }
     console.log(playerScore)

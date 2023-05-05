@@ -1,0 +1,13 @@
+#playerBoard {
+    height: 250px;
+}
+
+#cpuBoard {
+    height: 250px;
+}
+
+#player-c1r9 {
+    background: greenyellow;
+    height: 10px;
+    width: 10px;
+}
