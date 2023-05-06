@@ -45,8 +45,8 @@ console.log (warship)
 playAgainBtn.addEventListener('click', begin);
     // Board Spaces event listeners
 document.querySelector(".boards").addEventListener('click' , gridClick)
-/*----- functions -----*/
 
+/*----- functions -----*/
 //function to generate div elements for board and add event listeners
 function createBoard () {
     //create the two boards and apend to the section with class boards
@@ -89,6 +89,76 @@ function createBoard () {
             cpuDivEl.setAttribute("id", `cpu-c${i}r7`)
             sectionCpuBoard.append(cpuDivEl)
         } 
+
+        for (i=0; i<10; i++) {
+            const playerDivEl = document.createElement("div")
+            playerDivEl.setAttribute("id", `player-c${i}r6`)
+            sectionPlayerBoard.append(playerDivEl)
+
+            const cpuDivEl = document.createElement("div")
+            cpuDivEl.setAttribute("id", `cpu-c${i}r6`)
+            sectionCpuBoard.append(cpuDivEl)
+        } 
+
+        for (i=0; i<10; i++) {
+            const playerDivEl = document.createElement("div")
+            playerDivEl.setAttribute("id", `player-c${i}r5`)
+            sectionPlayerBoard.append(playerDivEl)
+
+            const cpuDivEl = document.createElement("div")
+            cpuDivEl.setAttribute("id", `cpu-c${i}r5`)
+            sectionCpuBoard.append(cpuDivEl)
+        } 
+
+        for (i=0; i<10; i++) {
+            const playerDivEl = document.createElement("div")
+            playerDivEl.setAttribute("id", `player-c${i}r4`)
+            sectionPlayerBoard.append(playerDivEl)
+
+            const cpuDivEl = document.createElement("div")
+            cpuDivEl.setAttribute("id", `cpu-c${i}r4`)
+            sectionCpuBoard.append(cpuDivEl)
+        } 
+
+        for (i=0; i<10; i++) {
+            const playerDivEl = document.createElement("div")
+            playerDivEl.setAttribute("id", `player-c${i}r3`)
+            sectionPlayerBoard.append(playerDivEl)
+
+            const cpuDivEl = document.createElement("div")
+            cpuDivEl.setAttribute("id", `cpu-c${i}r3`)
+            sectionCpuBoard.append(cpuDivEl)
+        } 
+
+        for (i=0; i<10; i++) {
+            const playerDivEl = document.createElement("div")
+            playerDivEl.setAttribute("id", `player-c${i}r2`)
+            sectionPlayerBoard.append(playerDivEl)
+
+            const cpuDivEl = document.createElement("div")
+            cpuDivEl.setAttribute("id", `cpu-c${i}r2`)
+            sectionCpuBoard.append(cpuDivEl)
+        } 
+
+        for (i=0; i<10; i++) {
+            const playerDivEl = document.createElement("div")
+            playerDivEl.setAttribute("id", `player-c${i}r1`)
+            sectionPlayerBoard.append(playerDivEl)
+
+            const cpuDivEl = document.createElement("div")
+            cpuDivEl.setAttribute("id", `cpu-c${i}r1`)
+            sectionCpuBoard.append(cpuDivEl)
+        } 
+
+        for (i=0; i<10; i++) {
+            const playerDivEl = document.createElement("div")
+            playerDivEl.setAttribute("id", `player-c${i}r0`)
+            sectionPlayerBoard.append(playerDivEl)
+
+            const cpuDivEl = document.createElement("div")
+            cpuDivEl.setAttribute("id", `cpu-c${i}r0`)
+            sectionCpuBoard.append(cpuDivEl)
+        } 
     }
 }
 createBoard();
@@ -100,8 +170,8 @@ createBoard();
     //   else change grid color grey
     //   grid click event listener will multiply turn by - 1
     // }
-function gridClick () {
-    alert("Boo")
+function gridClick (evt) {
+    alert(evt.target.id)
 }
 
     // init {
@@ -153,6 +223,7 @@ begin ()
     //   prompt player to choose ship locations
     //   push to game board
     // }
+    // *********** Need to research .indexOf method ********
 function renderBoard() {
 
 }
@@ -163,11 +234,14 @@ function renderBoard() {
     //   else if cpuScore > total ship points then cpu win
     //   else if win null
     // }
+function winCheck () {
+
+}
     
     // cpu 'ai' fuction {
     //   math.random for col indx ref
     // }
-// *********** Need to research .indexOf method ********
+
 function cpuAi () {
     if (turn === -1) {
         

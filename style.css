@@ -53,25 +53,18 @@ section {
 
 section.boards div {
     background: lightgrey;
-    height: 20px;
-    width: 20px;
-    border-radius: 4px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
     flex-direction: row;
-  
 }
 
-/* Need wrapping every 10 div elements */
-section.boards section div:nth-child(11n) {
-    flex-wrap: wrap;
-    background:black;
-}
-
-#playerBoard {
+#playerBoard, #cpuBoard {
+    display: grid;
     height: 500px;
     width: 500px;
-}
-
-#cpuBoard {
-    height: 500PX;
-    width: 500px;
+    flex-direction: row;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
 }
