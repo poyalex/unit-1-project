@@ -12,6 +12,11 @@ let cpuBoard; // set cpuboard
 let playerScore; // set playerScore
 let cpuScore; // set cpuScore
 let winner; //set winner 
+//Set ships
+let playerShip1
+let playerShip2 
+let cpuShip1
+let cpuShip2
 
     
 /*----- cached elements  -----*/
@@ -52,7 +57,7 @@ function createBoard () {
     //create the two boards and apend to the section with class boards
     const sectionPlayerBoard = document.querySelector("#playerBoard");
     const sectionCpuBoard = document.querySelector("#cpuBoard");
-    sectionPlayerBoard.style.background = 'red';
+    sectionPlayerBoard.style.background = 'maroon';
     sectionCpuBoard.style.background = 'blue';
 
     //event listeners on parent board. *Event Delegation*
@@ -63,100 +68,120 @@ function createBoard () {
         for (i=0; i<10; i++) {
             const playerDivEl = document.createElement("div")
             playerDivEl.setAttribute("id", `player-c${i}r9`)
+            playerDivEl.setAttribute("class", "playerBoard")
             sectionPlayerBoard.append(playerDivEl)
 
             const cpuDivEl = document.createElement("div")
             cpuDivEl.setAttribute("id", `cpu-c${i}r9`)
+            cpuDivEl.setAttribute("class", "cpuBoard")
             sectionCpuBoard.append(cpuDivEl)
         } 
 
         for (i=0; i<10; i++) {
             const playerDivEl = document.createElement("div")
             playerDivEl.setAttribute("id", `player-c${i}r8`)
+            playerDivEl.setAttribute("class", "playerBoard")
             sectionPlayerBoard.append(playerDivEl)
 
             const cpuDivEl = document.createElement("div")
             cpuDivEl.setAttribute("id", `cpu-c${i}r8`)
+            cpuDivEl.setAttribute("class", "cpuBoard")
             sectionCpuBoard.append(cpuDivEl)
         } 
 
         for (i=0; i<10; i++) {
             const playerDivEl = document.createElement("div")
             playerDivEl.setAttribute("id", `player-c${i}r7`)
+            playerDivEl.setAttribute("class", "playerBoard")
             sectionPlayerBoard.append(playerDivEl)
 
             const cpuDivEl = document.createElement("div")
             cpuDivEl.setAttribute("id", `cpu-c${i}r7`)
+            cpuDivEl.setAttribute("class", "cpuBoard")
             sectionCpuBoard.append(cpuDivEl)
         } 
 
         for (i=0; i<10; i++) {
             const playerDivEl = document.createElement("div")
             playerDivEl.setAttribute("id", `player-c${i}r6`)
+            playerDivEl.setAttribute("class", "playerBoard")
             sectionPlayerBoard.append(playerDivEl)
 
             const cpuDivEl = document.createElement("div")
             cpuDivEl.setAttribute("id", `cpu-c${i}r6`)
+            cpuDivEl.setAttribute("class", "cpuBoard")
             sectionCpuBoard.append(cpuDivEl)
         } 
 
         for (i=0; i<10; i++) {
             const playerDivEl = document.createElement("div")
             playerDivEl.setAttribute("id", `player-c${i}r5`)
+            playerDivEl.setAttribute("class", "playerBoard")
             sectionPlayerBoard.append(playerDivEl)
 
             const cpuDivEl = document.createElement("div")
             cpuDivEl.setAttribute("id", `cpu-c${i}r5`)
+            cpuDivEl.setAttribute("class", "cpuBoard")
             sectionCpuBoard.append(cpuDivEl)
         } 
 
         for (i=0; i<10; i++) {
             const playerDivEl = document.createElement("div")
             playerDivEl.setAttribute("id", `player-c${i}r4`)
+            playerDivEl.setAttribute("class", "playerBoard")
             sectionPlayerBoard.append(playerDivEl)
 
             const cpuDivEl = document.createElement("div")
             cpuDivEl.setAttribute("id", `cpu-c${i}r4`)
+            cpuDivEl.setAttribute("class", "cpuBoard")
             sectionCpuBoard.append(cpuDivEl)
         } 
 
         for (i=0; i<10; i++) {
             const playerDivEl = document.createElement("div")
             playerDivEl.setAttribute("id", `player-c${i}r3`)
+            playerDivEl.setAttribute("class", "playerBoard")
             sectionPlayerBoard.append(playerDivEl)
 
             const cpuDivEl = document.createElement("div")
             cpuDivEl.setAttribute("id", `cpu-c${i}r3`)
+            cpuDivEl.setAttribute("class", "cpuBoard")
             sectionCpuBoard.append(cpuDivEl)
         } 
 
         for (i=0; i<10; i++) {
             const playerDivEl = document.createElement("div")
             playerDivEl.setAttribute("id", `player-c${i}r2`)
+            playerDivEl.setAttribute("class", "playerBoard")
             sectionPlayerBoard.append(playerDivEl)
 
             const cpuDivEl = document.createElement("div")
             cpuDivEl.setAttribute("id", `cpu-c${i}r2`)
+            cpuDivEl.setAttribute("class", "cpuBoard")
             sectionCpuBoard.append(cpuDivEl)
         } 
 
         for (i=0; i<10; i++) {
             const playerDivEl = document.createElement("div")
             playerDivEl.setAttribute("id", `player-c${i}r1`)
+            playerDivEl.setAttribute("class", "playerBoard")
             sectionPlayerBoard.append(playerDivEl)
 
             const cpuDivEl = document.createElement("div")
             cpuDivEl.setAttribute("id", `cpu-c${i}r1`)
+            cpuDivEl.setAttribute("class", "cpuBoard")
             sectionCpuBoard.append(cpuDivEl)
         } 
 
         for (i=0; i<10; i++) {
             const playerDivEl = document.createElement("div")
             playerDivEl.setAttribute("id", `player-c${i}r0`)
+            playerDivEl.setAttribute("class", "playerBoard")
             sectionPlayerBoard.append(playerDivEl)
 
             const cpuDivEl = document.createElement("div")
             cpuDivEl.setAttribute("id", `cpu-c${i}r0`)
+            cpuDivEl.setAttribute("class", "cpuBoard")
             sectionCpuBoard.append(cpuDivEl)
         } 
     }
@@ -171,7 +196,16 @@ createBoard();
     //   grid click event listener will multiply turn by - 1
     // }
 function gridClick (evt) {
-    alert(evt.target.id)
+    // console.log(evt)
+    // console.log(evt.currentTarget)
+    // console.log(evt.target)
+    // console.log(evt.target.className)
+    console.log(evt.target.id)
+    if (evt.target.className === "playerBoard" || evt.target.className === "cpuBoard") {
+        document.querySelector(`#${evt.target.id}`).style.background = "red"
+    }
+
+    turn *= -1;
 }
 
     // init {
@@ -235,7 +269,11 @@ function renderBoard() {
     //   else if win null
     // }
 function winCheck () {
+    if (playerScore > 1) {
 
+    } else if (cpuScore > 1) {
+
+    }
 }
     
     // cpu 'ai' fuction {
