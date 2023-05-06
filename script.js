@@ -2,7 +2,7 @@
 const colors = {
     '1' : 'red' , //player
     '-1' : 'blue' , //cpu
-    '0' : 'grey' //blank 
+    '0' : 'lightgrey' //blank 
 };
 
 /*----- state variables -----*/
@@ -22,7 +22,7 @@ const cpuScoreEl = document.querySelector('#cpuScore');
     // set playAgainBtn
 const playAgainBtn = document.querySelector('#playAgain');
     // set gridButton * Each place on playerBoard needs to be clickable *
-const coordinate = 0;
+// const coordinate = 0;
 
 
 
@@ -43,23 +43,22 @@ console.log (warship)
 /*----- event listeners -----*/
     //   playAgainBtn event listener
 playAgainBtn.addEventListener('click', begin);
-    // playerBoardBtn event listeners
-
+    // Board Spaces event listeners
+document.querySelector(".boards").addEventListener('click' , gridClick)
 /*----- functions -----*/
 
 //function to generate div elements for board and add event listeners
 function createBoard () {
     //create the two boards and apend to the section with class boards
-    // document.querySelector(".boards").addEventListener("click", gridClick)
     const sectionPlayerBoard = document.querySelector("#playerBoard");
     const sectionCpuBoard = document.querySelector("#cpuBoard");
     sectionPlayerBoard.style.background = 'red';
     sectionCpuBoard.style.background = 'blue';
-    const divEl = document.createElement("div")
 
-    //event listeners on  parent boards 
+    //event listeners on parent board. *Event Delegation*
     //create board div elements
     // sectionPlayerBoard.append(document.createElement("div").setAttribute("id", `c${i}r9`))
+    // const divEl = document.createElement("div")
     for (i=0; i < 10; i++) {
         for (i=0; i<10; i++) {
             const playerDivEl = document.createElement("div")
@@ -91,10 +90,19 @@ function createBoard () {
             sectionCpuBoard.append(cpuDivEl)
         } 
     }
-    //Board Css Styling
 }
 createBoard();
 
+    // player action function {
+    //   grid click event listener will pull grid reference
+    //   if === ref 
+    //   then alert 'hit' and change grid color red
+    //   else change grid color grey
+    //   grid click event listener will multiply turn by - 1
+    // }
+function gridClick () {
+    alert("Boo")
+}
 
     // init {
     //   set turn to 1
@@ -165,19 +173,3 @@ function cpuAi () {
         
     }
 }
-    // player action function {
-    //   grid click event listener will pull grid reference
-    //   if === ref 
-    //   then alert 'hit' and change grid color red
-    //   else change grid color grey
-    //   grid click event listener will multiply turn by - 1
-    // }
-function gridClick () {
-    if (turn === 1) {
-    
-    turn *=-1
-    } else if (turn === -1) {
-       
-    }
-}
-    console.log(playerScore)

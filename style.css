@@ -6,27 +6,53 @@
 
 title {
     font-size: 50px;    
+    font-weight: bold;
     justify-content: center;
 }
 
 .header {
+    display: flex;
     height: 30px;
     background: pink;
     flex-direction: row;
+    justify-content: space-between;
+    ;
 }
+
+.header scores{
+    display: flex;
+    height: 30px;
+    width: 100px;
+    background: black;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.header scores div{
+    display: flex;
+    height: 10px;
+    width: 40px;
+    background: white;
+    justify-content: space-between;
+}
+
+
 
 #playAgain {
     /* align-items: end; */
-    background: lightgray;
+    background: lightgrey;
+    position: relative;
     align-content: center;
 }
 
 section {
     display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 section.boards div {
-    background: greenyellow;
+    background: lightgrey;
     height: 20px;
     width: 20px;
     border-radius: 4px;
@@ -35,7 +61,7 @@ section.boards div {
 }
 
 /* Need wrapping every 10 div elements */
-section.boards section div:nth-child(10n) {
+section.boards section div:nth-child(11n) {
     flex-wrap: wrap;
     background:black;
 }
