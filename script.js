@@ -58,7 +58,7 @@ function createBoard () {
     const sectionPlayerBoard = document.querySelector("#playerBoard");
     const sectionCpuBoard = document.querySelector("#cpuBoard");
     sectionPlayerBoard.style.background = 'maroon';
-    sectionCpuBoard.style.background = 'blue';
+    sectionCpuBoard.style.background = 'lightblue';
 
     //event listeners on parent board. *Event Delegation*
     //create board div elements
@@ -201,11 +201,13 @@ function gridClick (evt) {
     // console.log(evt.target)
     // console.log(evt.target.className)
     console.log(evt.target.id)
-    if (evt.target.className === "playerBoard" || evt.target.className === "cpuBoard") {
+    if (evt.target.className === "playerBoard" && turn > 0) {
         document.querySelector(`#${evt.target.id}`).style.background = "red"
+        turn *= -1
+    } else if (evt.target.className === "cpuBoard" && turn < 0) {
+        document.querySelector(`#${evt.target.id}`).style.background = "purple"
+        turn *= -1
     }
-
-    turn *= -1;
 }
 
     // init {
@@ -281,7 +283,8 @@ function winCheck () {
     // }
 
 function cpuAi () {
-    if (turn === -1) {
-        
+    if (turn < 0) {
+        alert ("cpuAI")
     }
 }
+cpuAi ()
