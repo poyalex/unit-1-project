@@ -12,6 +12,8 @@ let cpuBoard; // set cpuboard
 let playerScore; // set playerScore
 let cpuScore; // set cpuScore
 let winner; //set winner 
+let turnCount; //count number of turns
+
 //Set ships
 let playerShip1
 let playerShip2 
@@ -51,14 +53,16 @@ playAgainBtn.addEventListener('click', begin);
     // Board Spaces event listeners
 document.querySelector(".boards").addEventListener('click' , gridClick)
 
+//Modal event listeners
+document.querySelector("#modal1Btn").addEventListener('click' , modal1Advance)
+document.querySelector("#modal2Btn").addEventListener('click' , modal2Advance)
+
 /*----- functions -----*/
 //function to generate div elements for board and add event listeners
 function createBoard () {
     //create the two boards and apend to the section with class boards
     const sectionPlayerBoard = document.querySelector("#playerBoard");
     const sectionCpuBoard = document.querySelector("#cpuBoard");
-    sectionPlayerBoard.style.background = 'maroon';
-    sectionCpuBoard.style.background = 'lightblue';
 
     //event listeners on parent board. *Event Delegation*
     //create board div elements
@@ -195,6 +199,7 @@ createBoard();
     //   else change grid color grey
     //   grid click event listener will multiply turn by - 1
     // }
+//Stack overflow simulate click *******document.getElementById('elementID').click();********
 function gridClick (evt) {
     // console.log(evt)
     // console.log(evt.currentTarget)
@@ -203,11 +208,21 @@ function gridClick (evt) {
     console.log(evt.target.id)
     if (evt.target.className === "playerBoard" && turn > 0) {
         document.querySelector(`#${evt.target.id}`).style.background = "red"
+        winCheck ()
         turn *= -1
+        cpuAi ()
     } else if (evt.target.className === "cpuBoard" && turn < 0) {
         document.querySelector(`#${evt.target.id}`).style.background = "purple"
+        winCheck ()
         turn *= -1
     }
+}
+
+    // cpu 'ai' fuction {
+    //   math.random for col indx ref
+    // }
+function cpuAi () {
+    
 }
 
     // init {
@@ -277,14 +292,19 @@ function winCheck () {
 
     }
 }
-    
-    // cpu 'ai' fuction {
-    //   math.random for col indx ref
-    // }
 
-function cpuAi () {
-    if (turn < 0) {
-        alert ("cpuAI")
-    }
+function modal1Advance () {
+    document.querySelector("#modal1").style.visibility = "collapse"
+    document.querySelector("#modal1").style.height = "0px"
+    document.querySelector("#modal1").style.width = "0px"
+    document.querySelector("#modal2").style.visibility = "visible"
 }
-cpuAi ()
+
+function modal2Advance () {
+    document.querySelector("#modal2").style.visibility = "collapse"
+    document.querySelector("#modal2").style.height = "0px"
+    document.querySelector("#modal2").style.width = "0px"
+    document.querySelector("#playerBoard").style.visibility = "visible"
+    document.querySelector("#cpuBoard").style.visibility = "visible"
+    turnCount = 0
+}

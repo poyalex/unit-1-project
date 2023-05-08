@@ -4,6 +4,11 @@
     display: grid;
 }
 
+/* **************To hide liveserver code DELETE********************* */
+script {
+    visibility: hidden;
+}
+
 title {
     font-size: 50px;    
     font-weight: bold;
@@ -51,6 +56,11 @@ section {
     justify-content: space-evenly;
 }
 
+.boards {
+    visibility:collapse;
+    height: 0px;
+}
+
 section.boards div {
     background: lightgrey;
     height: 40px;
@@ -67,4 +77,40 @@ section.boards div {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     justify-items: center;
     align-items: center;
+}
+
+#playerBoard{
+    background: maroon;
+}
+
+#cpuBoard{ 
+    background: lightblue;
+}
+
+/************MODAL STYLING*********/
+.modal {
+    background: lightgrey;
+    width: 600px;
+    height: 200px;
+    justify-self: center;
+    align-self: center;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+}
+
+.modal h1, .modal p, .modal button {
+    background: lightgray;
+}
+
+#modal1 {
+    visibility: visible;
+    height: 300px;
+    width: 400px;
+}
+
+#modal2 {
+    visibility: collapse;
+    height: 200px;
+    width: 400px;
 }
