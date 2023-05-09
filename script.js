@@ -47,7 +47,7 @@ const battleship = new Ship ("Battleship", 3, 3);
 
 /*----- event listeners -----*/
     //   playAgainBtn event listener
-playAgainBtn.addEventListener('click', begin);
+playAgainBtn.addEventListener('click', playAgain);
     // Board Spaces event listeners
 document.querySelector(".boards").addEventListener('click' , gridClick)
 
@@ -207,105 +207,68 @@ function gridClick (evt) {
     // console.log(evt.target.id)
     //Dictates intial ship placement and then handles turns between player and cpu
     if (evt.target.className === "playerBoard" && shipCount === 0) {
-        document.querySelector(`#${evt.target.id}`).style.background = "darkgrey"
+        document.querySelector(`#${evt.target.id}`).style.background = "black"
         playerShip1 = evt.target.id
-        cpuShip1 = `cpu-c${Math.floor(Math.random()*11)}r${Math.floor(Math.random()*11)}}`
+        cpuShip1 = `cpu-c${Math.floor(Math.random()*10)}r${Math.floor(Math.random()*10)}`
         shipCount += 1
     } else if (evt.target.className === "playerBoard" && shipCount === 1) {
         if (evt.target.id === playerShip1) {
 
         } else {
-            document.querySelector(`#${evt.target.id}`).style.background = "darkgrey"
+            document.querySelector(`#${evt.target.id}`).style.background = "black"
             playerShip2 = evt.target.id
-            cpuShip2 = `cpu-c${Math.floor(Math.random()*11)}r${Math.floor(Math.random()*11)}}`
+            cpuShip2 = `cpu-c${Math.floor(Math.random()*10)}r${Math.floor(Math.random()*10)}}`
             shipCount += 1
+            turn +=1
             setTimeout(document.querySelector("#playerBoard").style.visibility = "hidden", 20000000)
             setTimeout(document.querySelector("#cpuBoard").style.visibility = "hidden", 20000000)
             setTimeout(document.querySelector("#modal3").style.visibility = "visible", 20000000)
         }
     } else if (evt.target.className === "cpuBoard" && turn > 0) {
-        document.querySelector(`#${evt.target.id}`).style.background = "red"
+            if (cpuShip1 === evt.target.id || cpuShip2 === evt.target.id) {
+                document.querySelector(`#${evt.target.id}`).style.background = "red"
+                playerScore += 1
+            } else {
+                document.querySelector(`#${evt.target.id}`).style.background = "darkgrey"
+                console.log(evt.target.id)
+            }
         winCheck ()
-        turn *= -1
-        cpuAi ()
-    } else if (evt.target.className === "playerBoard" && turn < 0) {
-        document.querySelector(`#${evt.target.id}`).style.background = "blue"
-        winCheck ()
-        turn *= -1
+    //     turn *= -1
+    // } else if (evt.target.className === "playerBoard" && turn < 0) {
+    //     document.querySelector(`#${evt.target.id}`).style.background = "blue"
+    //     winCheck ()
+    //     turn *= -1
+    }
+
+    // cpuAi ()
+}
+
+// function cpuAi () {
+//     document.getElementById (`#cpu-c${Math.floor(Math.random()*11)}r${Math.floor(Math.random()*11)}}`).click()
+// }
+
+function winCheck () {
+    if (playerScore > 1) {
+        
+    } else if (cpuScore > 1) {
+
     }
 }
+
 
     // cpu 'ai' fuction {
     //   math.random for col indx ref
     // }
 
-
-
-
-
-    // init {
-    //   set turn to 1
-    //   set values for both boards to zero
-    //   //cpu choices of ship position
-    //   math.random to choose inital orientation.math.random to select horizontal or verital(1 or 2 value)
-    //   set winner as null
-    //   player ship location modal
-    //   render
-    // }
-
 function begin () {
-    turn = 1
+    turn = 0
     shipCount = 0
-    // playerBoard = [
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // C0
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    // // R0
-    // ];
-
-    // cpuBoard = [
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], //Col 0
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    // // R0
-    // ]
-
     winner = null
 }
 begin ()
 
-    // ship location modal {
-    //   prompt player to choose ship locations
-    //   push to game board
-    // }
-    // *********** Need to research .indexOf method ********
-    
-    // winCheck Funciton {
-    //   if playerScore > total ship points
-    //     then player win
-    //   else if cpuScore > total ship points then cpu win
-    //   else if win null
-    // }
-function winCheck () {
-    if (playerScore > 1) {
-
-    } else if (cpuScore > 1) {
-
-    }
+function playAgain () {
+    location.reload()
 }
 
 function modal1Advance () {
