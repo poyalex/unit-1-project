@@ -12,7 +12,7 @@ let cpuBoard; // set cpuboard
 let playerScore; // set playerScore
 let cpuScore; // set cpuScore
 let winner; //set winner 
-let turnCount; //count number of turns
+let shipCount; //count number of placed ships
 
 //Set ships
 let playerShip1
@@ -56,6 +56,7 @@ document.querySelector(".boards").addEventListener('click' , gridClick)
 //Modal event listeners
 document.querySelector("#modal1Btn").addEventListener('click' , modal1Advance)
 document.querySelector("#modal2Btn").addEventListener('click' , modal2Advance)
+document.querySelector("#modal3Btn").addEventListener('click' , modal3Advance)
 
 /*----- functions -----*/
 //function to generate div elements for board and add event listeners
@@ -205,8 +206,22 @@ function gridClick (evt) {
     // console.log(evt.currentTarget)
     // console.log(evt.target)
     // console.log(evt.target.className)
-    console.log(evt.target.id)
-    if (evt.target.className === "playerBoard" && turn > 0) {
+    // console.log(evt.target.id)
+    //Dictates intial ship placement and then handles turns between player and cpu
+    if (evt.target.className === "playerBoard" && shipCount === 0) {
+        document.querySelector(`#${evt.target.id}`).style.background = "black"
+        playerShip1 = evt.target.id
+        shipCount += 1
+    } else if (evt.target.className === "playerBoard" && shipCount === 1) {
+        document.querySelector(`#${evt.target.id}`).style.background = "black"
+        playerShip2 = evt.target.id
+        shipCount += 1
+        setTimeout(
+        document.querySelector("#playerBoard").style.visibility = "hidden",
+        document.querySelector("#cpuBoard").style.visibility = "hidden",
+        document.querySelector("#modal3").style.visibility = "visible", 3000000)
+
+    } else if (evt.target.className === "playerBoard" && turn > 0) {
         document.querySelector(`#${evt.target.id}`).style.background = "red"
         winCheck ()
         turn *= -1
@@ -237,6 +252,7 @@ function cpuAi () {
 
 function begin () {
     turn = "1";
+    shipCount = 0;
     playerBoard = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // C0
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -294,17 +310,24 @@ function winCheck () {
 }
 
 function modal1Advance () {
-    document.querySelector("#modal1").style.visibility = "collapse"
+    document.querySelector("#modal1").style.visibility = "hidden"
     document.querySelector("#modal1").style.height = "0px"
     document.querySelector("#modal1").style.width = "0px"
     document.querySelector("#modal2").style.visibility = "visible"
 }
 
 function modal2Advance () {
-    document.querySelector("#modal2").style.visibility = "collapse"
+    document.querySelector("#modal2").style.visibility = "hidden"
     document.querySelector("#modal2").style.height = "0px"
     document.querySelector("#modal2").style.width = "0px"
     document.querySelector("#playerBoard").style.visibility = "visible"
     document.querySelector("#cpuBoard").style.visibility = "visible"
-    turnCount = 0
+}
+
+function modal3Advance () {
+    document.querySelector("#modal3").style.visibility = "hidden"
+    document.querySelector("#modal3").style.height = "0px"
+    document.querySelector("#modal3").style.width = "0px"
+    document.querySelector("#playerBoard").style.visibility = "visible"
+    document.querySelector("#cpuBoard").style.visibility = "visible"
 }

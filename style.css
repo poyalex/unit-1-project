@@ -57,7 +57,7 @@ section {
 }
 
 .boards {
-    visibility:collapse;
+    visibility: hidden;
     height: 0px;
 }
 
@@ -110,7 +110,13 @@ section.boards div {
 }
 
 #modal2 {
-    visibility: collapse;
+    visibility: hidden;
+    height: 200px;
+    width: 400px;
+}
+
+#modal3 {
+    visibility: hidden;
     height: 200px;
     width: 400px;
 }
