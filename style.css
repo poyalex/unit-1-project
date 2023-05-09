@@ -62,7 +62,7 @@ section {
 }
 
 section.boards div {
-    background: lightgrey;
+    background: white;
     height: 40px;
     width: 40px;
     border-radius: 50px;

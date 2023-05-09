@@ -45,8 +45,6 @@ const boat = new Ship("Boat", 1, 1);
 const warship = new Ship ("Warship", 2, 2);
 const battleship = new Ship ("Battleship", 3, 3);
 
-console.log (warship)
-
 /*----- event listeners -----*/
     //   playAgainBtn event listener
 playAgainBtn.addEventListener('click', begin);
@@ -209,25 +207,29 @@ function gridClick (evt) {
     // console.log(evt.target.id)
     //Dictates intial ship placement and then handles turns between player and cpu
     if (evt.target.className === "playerBoard" && shipCount === 0) {
-        document.querySelector(`#${evt.target.id}`).style.background = "black"
+        document.querySelector(`#${evt.target.id}`).style.background = "darkgrey"
         playerShip1 = evt.target.id
+        cpuShip1 = `cpu-c${Math.floor(Math.random()*11)}r${Math.floor(Math.random()*11)}}`
         shipCount += 1
     } else if (evt.target.className === "playerBoard" && shipCount === 1) {
-        document.querySelector(`#${evt.target.id}`).style.background = "black"
-        playerShip2 = evt.target.id
-        shipCount += 1
-        setTimeout(
-        document.querySelector("#playerBoard").style.visibility = "hidden",
-        document.querySelector("#cpuBoard").style.visibility = "hidden",
-        document.querySelector("#modal3").style.visibility = "visible", 3000000)
+        if (evt.target.id === playerShip1) {
 
-    } else if (evt.target.className === "playerBoard" && turn > 0) {
+        } else {
+            document.querySelector(`#${evt.target.id}`).style.background = "darkgrey"
+            playerShip2 = evt.target.id
+            cpuShip2 = `cpu-c${Math.floor(Math.random()*11)}r${Math.floor(Math.random()*11)}}`
+            shipCount += 1
+            setTimeout(document.querySelector("#playerBoard").style.visibility = "hidden", 20000000)
+            setTimeout(document.querySelector("#cpuBoard").style.visibility = "hidden", 20000000)
+            setTimeout(document.querySelector("#modal3").style.visibility = "visible", 20000000)
+        }
+    } else if (evt.target.className === "cpuBoard" && turn > 0) {
         document.querySelector(`#${evt.target.id}`).style.background = "red"
         winCheck ()
         turn *= -1
         cpuAi ()
-    } else if (evt.target.className === "cpuBoard" && turn < 0) {
-        document.querySelector(`#${evt.target.id}`).style.background = "purple"
+    } else if (evt.target.className === "playerBoard" && turn < 0) {
+        document.querySelector(`#${evt.target.id}`).style.background = "blue"
         winCheck ()
         turn *= -1
     }
@@ -236,9 +238,10 @@ function gridClick (evt) {
     // cpu 'ai' fuction {
     //   math.random for col indx ref
     // }
-function cpuAi () {
-    
-}
+
+
+
+
 
     // init {
     //   set turn to 1
@@ -251,38 +254,37 @@ function cpuAi () {
     // }
 
 function begin () {
-    turn = "1";
-    shipCount = 0;
-    playerBoard = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // C0
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    // R0
-    ];
+    turn = 1
+    shipCount = 0
+    // playerBoard = [
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // C0
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    // // R0
+    // ];
 
-    cpuBoard = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], //Col 0
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    // R0
-    ];
+    // cpuBoard = [
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], //Col 0
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    // // R0
+    // ]
 
-    winner = null;
-    renderBoard();
+    winner = null
 }
 begin ()
 
@@ -291,9 +293,6 @@ begin ()
     //   push to game board
     // }
     // *********** Need to research .indexOf method ********
-function renderBoard() {
-
-}
     
     // winCheck Funciton {
     //   if playerScore > total ship points
