@@ -8,6 +8,7 @@
 script {
     visibility: hidden;
 }
+/* **************To hide liveserver code DELETE********************* */
 
 title {
     font-size: 50px;    
@@ -54,12 +55,12 @@ body, section, div {
     justify-items: center;
 }
 
-#playerScore {
+#playerScore, #playerBoard {
     background: maroon;
 }
 
-#cpuScore {
-    background: lightblue;
+#cpuScore, #cpuBoard {
+    background: darkkhaki;
 }
 
 #playAgain {
@@ -98,14 +99,6 @@ section.boards div {
     align-items: center;
 }
 
-#playerBoard{
-    background: maroon;
-}
-
-#cpuBoard{ 
-    background: lightblue;
-}
-
 /************MODAL STYLING*********/
 .modal {
     background: lightgrey;
@@ -138,4 +131,9 @@ section.boards div {
     visibility: hidden;
     height: 200px;
     width: 400px;
+}
+
+#winScreen {
+    visibility: hidden;
+    height: 0px;
 }

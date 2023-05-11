@@ -219,7 +219,7 @@ function gridClick (evt) {
         } else {
             document.querySelector(`#${evt.target.id}`).style.background = "black"
             playerShip2 = evt.target.id
-            cpuShip2 = `cpu-c${Math.floor(Math.random()*10)}r${Math.floor(Math.random()*10)}}`
+            cpuShip2 = `cpu-c${Math.floor(Math.random()*10)}r${Math.floor(Math.random()*10)}`
             shipCount += 1
             turn +=1
             setTimeout(document.querySelector("#playerBoard").style.visibility = "hidden", 20000000)
@@ -231,8 +231,13 @@ function gridClick (evt) {
                 document.querySelector(`#${evt.target.id}`).style.background = "red"
                 playerScore += 1
                 scores()
+                console.log(evt.target.id)
             } else {
                 document.querySelector(`#${evt.target.id}`).style.background = "darkgrey"
+                console.log(evt.target.className)
+                console.log(evt.target.id)
+                console.log(cpuShip1)
+                console.log(cpuShip2)
             }
         winCheck ()
     //     turn *= -1
@@ -251,13 +256,23 @@ function gridClick (evt) {
 
 function winCheck () {
     if (playerScore > 1) {
-        
+        winner = "Commandant"
+        document.querySelector("#playerBoard").style.visibility = "hidden"
+        document.querySelector("#cpuBoard").style.visibility = "hidden"
+        document.querySelector("#winScreen").style.visibility = "Visible"
+        document.querySelector("#winScreen").style.height = "100px"
+        document.querySelector("#winScreen").style.width = "300px"
+        document.querySelector("#winScreen").innerHTML = `${winner} we have won the battle! Huzzah!`
     } else if (cpuScore > 1) {
-
+        winner = "The Enemy"
+        document.querySelector("#playerBoard").style.visibility = "hidden"
+        document.querySelector("#cpuBoard").style.visibility = "hidden"
+        document.querySelector("#winScreen").style.visibility = "Visible"
+        document.querySelector("#winScreen").style.height = "100px"
+        document.querySelector("#winScreen").style.width = "300px"
+        document.querySelector("#winScreen").innerHTML = `${winner} has won the battle. Commandant you have shamed our nation. Prepare for execution.`
     }
 }
-
-
 
     // cpu 'ai' fuction {
     //   math.random for col indx ref
@@ -266,9 +281,9 @@ function winCheck () {
 function begin () {
     turn = 0
     shipCount = 0
-    winner = null
     playerScore = 0
     cpuScore = 0
+    winner = 0
 }
 begin ()
 
