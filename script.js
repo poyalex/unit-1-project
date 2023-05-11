@@ -1,9 +1,9 @@
 /*----- constants -----*/
-const colors = {
-    '1' : 'red' , //player
-    '-1' : 'blue' , //cpu
-    '0' : 'lightgrey' //blank 
-};
+// const colors = {
+//     '1' : 'red' , //player
+//     '-1' : 'blue' , //cpu
+//     '0' : 'lightgrey' //blank 
+// };
 
 /*----- state variables -----*/
 let turn; // set turn
@@ -191,6 +191,8 @@ function createBoard () {
 }
 createBoard();
 
+
+
     // player action function {
     //   grid click event listener will pull grid reference
     //   if === ref 
@@ -228,9 +230,9 @@ function gridClick (evt) {
             if (cpuShip1 === evt.target.id || cpuShip2 === evt.target.id) {
                 document.querySelector(`#${evt.target.id}`).style.background = "red"
                 playerScore += 1
+                scores()
             } else {
                 document.querySelector(`#${evt.target.id}`).style.background = "darkgrey"
-                console.log(evt.target.id)
             }
         winCheck ()
     //     turn *= -1
@@ -256,6 +258,7 @@ function winCheck () {
 }
 
 
+
     // cpu 'ai' fuction {
     //   math.random for col indx ref
     // }
@@ -264,8 +267,16 @@ function begin () {
     turn = 0
     shipCount = 0
     winner = null
+    playerScore = 0
+    cpuScore = 0
 }
 begin ()
+
+function scores () {
+    playerScoreEl.innerHTML = `Player: ${playerScore}`
+    cpuScoreEl.innerHTML = `CPU: ${cpuScore}`
+}
+scores ()
 
 function playAgain () {
     location.reload()

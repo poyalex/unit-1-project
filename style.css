@@ -15,33 +15,52 @@ title {
     justify-content: center;
 }
 
+body, section, div {
+    background: none;
+}
+
 .header {
+    background: none;
     display: flex;
     height: 30px;
-    background: pink;
     flex-direction: row;
     justify-content: space-between;
-    ;
+    margin-bottom: 100px;
 }
 
 .header scores{
+    background: none;
     display: flex;
     height: 30px;
-    width: 100px;
-    background: black;
+    width: 300px;
     align-items: center;
     justify-content: space-around;
 }
 
 .header scores div{
     display: flex;
-    height: 10px;
-    width: 40px;
-    background: white;
+    height: 30px;
+    width: 100px;
     justify-content: space-between;
+    color: white;
+    font-size: 20px;
 }
 
+#playerScore, #cpuScore {
+    border-radius: 100px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    justify-items: center;
+}
 
+#playerScore {
+    background: maroon;
+}
+
+#cpuScore {
+    background: lightblue;
+}
 
 #playAgain {
     /* align-items: end; */
