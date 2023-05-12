@@ -1,9 +1,4 @@
 /*----- constants -----*/
-// const colors = {
-//     '1' : 'red' , //player
-//     '-1' : 'blue' , //cpu
-//     '0' : 'lightgrey' //blank 
-// };
 
 /*----- state variables -----*/
 let turn; // set turn
@@ -28,12 +23,8 @@ const playerScoreEl = document.querySelector('#playerScore');
 const cpuScoreEl = document.querySelector('#cpuScore');
     // set playAgainBtn
 const playAgainBtn = document.querySelector('#playAgain');
-    // set gridButton * Each place on playerBoard needs to be clickable *
-// const coordinate = 0;
 
-
-
-    // set ship class + extend ship class with three types and sizes of ships worth different points
+// set ship class + extend ship class with three types and sizes of ships worth different points
 class Ship {
     constructor(name, size, points){
         this.name = name;
@@ -47,14 +38,14 @@ const battleship = new Ship ("Battleship", 3, 3);
 
 /*----- event listeners -----*/
     //   playAgainBtn event listener
-playAgainBtn.addEventListener('click', playAgain);
+playAgainBtn.addEventListener("click", playAgain);
     // Board Spaces event listeners
 document.querySelector(".boards").addEventListener('click' , gridClick)
 
 //Modal event listeners
-document.querySelector("#modal1Btn").addEventListener('click' , modal1Advance)
-document.querySelector("#modal2Btn").addEventListener('click' , modal2Advance)
-document.querySelector("#modal3Btn").addEventListener('click' , modal3Advance)
+document.querySelector("#modal1Btn").addEventListener("click" , modal1Advance)
+document.querySelector("#modal2Btn").addEventListener("click" , modal2Advance)
+document.querySelector("#modal3Btn").addEventListener("click" , modal3Advance)
 
 /*----- functions -----*/
 //function to generate div elements for board and add event listeners
@@ -191,8 +182,6 @@ function createBoard () {
 }
 createBoard();
 
-
-
     // player action function {
     //   grid click event listener will pull grid reference
     //   if === ref 
@@ -200,14 +189,8 @@ createBoard();
     //   else change grid color grey
     //   grid click event listener will multiply turn by - 1
     // }
-//Stack overflow simulate click *******document.getElementById('elementID').click();********
+
 function gridClick (evt) {
-    // console.log(evt)
-    // console.log(evt.currentTarget)
-    // console.log(evt.target)
-    // console.log(evt.target.className)
-    // console.log(evt.target.id)
-    //Dictates intial ship placement and then handles turns between player and cpu
     if (evt.target.className === "playerBoard" && shipCount === 0) {
         document.querySelector(`#${evt.target.id}`).style.background = "black"
         playerShip1 = evt.target.id
@@ -215,44 +198,53 @@ function gridClick (evt) {
         shipCount += 1
     } else if (evt.target.className === "playerBoard" && shipCount === 1) {
         if (evt.target.id === playerShip1) {
-
+    
         } else {
             document.querySelector(`#${evt.target.id}`).style.background = "black"
             playerShip2 = evt.target.id
             cpuShip2 = `cpu-c${Math.floor(Math.random()*10)}r${Math.floor(Math.random()*10)}`
             shipCount += 1
             turn +=1
-            setTimeout(document.querySelector("#playerBoard").style.visibility = "hidden", 20000000)
-            setTimeout(document.querySelector("#cpuBoard").style.visibility = "hidden", 20000000)
-            setTimeout(document.querySelector("#modal3").style.visibility = "visible", 20000000)
+            function transition () {
+                document.querySelector("#playerBoard").style.visibility = "hidden"
+                document.querySelector("#cpuBoard").style.visibility = "hidden"
+                document.querySelector("#modal3").style.visibility = "visible"
+            }
+            setTimeout(transition, 1000)
         }
     } else if (evt.target.className === "cpuBoard" && turn > 0) {
             if (cpuShip1 === evt.target.id || cpuShip2 === evt.target.id) {
                 document.querySelector(`#${evt.target.id}`).style.background = "red"
                 playerScore += 1
+                turn *= -1
                 scores()
-                console.log(evt.target.id)
+                cpuAi()
             } else {
                 document.querySelector(`#${evt.target.id}`).style.background = "darkgrey"
-                console.log(evt.target.className)
-                console.log(evt.target.id)
-                console.log(cpuShip1)
-                console.log(cpuShip2)
+                turn *= -1
+                cpuAi()
             }
         winCheck ()
-    //     turn *= -1
-    // } else if (evt.target.className === "playerBoard" && turn < 0) {
-    //     document.querySelector(`#${evt.target.id}`).style.background = "blue"
-    //     winCheck ()
-    //     turn *= -1
+    } else if (evt.target.className === "playerBoard" && turn < 0) {
+        if (playerShip1 === evt.target.id || playerShip2 === evt.target.id) {
+            document.querySelector(`#${evt.target.id}`).style.background = "red"
+            cpuScore += 1
+            winCheck
+            turn *= -1
+            scores()
+        } else {
+            document.querySelector(`#${evt.target.id}`).style.background = "darkgrey"
+            turn *= -1
+        }
     }
-
-    // cpuAi ()
+    
 }
+    
 
-// function cpuAi () {
-//     document.getElementById (`#cpu-c${Math.floor(Math.random()*11)}r${Math.floor(Math.random()*11)}}`).click()
-// }
+function cpuAi () {
+    document.querySelector(`#player-c${Math.floor(Math.random()*10)}r${Math.floor(Math.random()*10)}`).click()
+    console.log(turn)
+}
 
 function winCheck () {
     if (playerScore > 1) {
@@ -274,9 +266,12 @@ function winCheck () {
     }
 }
 
-    // cpu 'ai' fuction {
-    //   math.random for col indx ref
-    // }
+function changeStyles () {
+    console.log ("change")
+    document.querySelector("#playerBoard").style.visibility = "hidden"
+    document.querySelector("#cpuBoard").style.visibility = "hidden"
+    document.querySelector("#modal3").style.visibility = "visible"
+    }
 
 function begin () {
     turn = 0
@@ -318,4 +313,5 @@ function modal3Advance () {
     document.querySelector("#modal3").style.width = "0px"
     document.querySelector("#playerBoard").style.visibility = "visible"
     document.querySelector("#cpuBoard").style.visibility = "visible"
+    document.querySelector(".header").style.visibility = "visible"
 }

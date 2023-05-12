@@ -27,6 +27,7 @@ body, section, div {
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 100px;
+    visibility: hidden;
 }
 
 .header scores{
