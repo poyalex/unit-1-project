@@ -4,11 +4,10 @@
     display: grid;
 }
 
-/* **************To hide liveserver code DELETE********************* */
+/* **************To hide liveserver injected code ******************** */
 script {
     visibility: hidden;
 }
-/* **************To hide liveserver code DELETE********************* */
 
 title {
     font-size: 50px;    

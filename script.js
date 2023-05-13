@@ -1,15 +1,14 @@
 /*----- constants -----*/
 
 /*----- state variables -----*/
-let turn; // set turn
-let playerBoard; // set playerboard
-let cpuBoard; // set cpuboard
-let playerScore; // set playerScore
-let cpuScore; // set cpuScore
-let winner; //set winner 
-let shipCount; //count number of placed ships
+let turn; 
+let playerBoard; 
+let cpuBoard; 
+let playerScore; 
+let cpuScore; 
+let winner;
+let shipCount;
 
-//Set ships
 let playerShip1
 let playerShip2 
 let cpuShip1
@@ -17,38 +16,21 @@ let cpuShip2
 
     
 /*----- cached elements  -----*/
-    // set playerScoreEl
 const playerScoreEl = document.querySelector('#playerScore');
-    // set cpuScoreEl
 const cpuScoreEl = document.querySelector('#cpuScore');
-    // set playAgainBtn
 const playAgainBtn = document.querySelector('#playAgain');
 
-// set ship class + extend ship class with three types and sizes of ships worth different points
-class Ship {
-    constructor(name, size, points){
-        this.name = name;
-        this.size = size;
-        this.points = points;
-    }
-}
-const boat = new Ship("Boat", 1, 1);
-const warship = new Ship ("Warship", 2, 2);
-const battleship = new Ship ("Battleship", 3, 3);
-
 /*----- event listeners -----*/
-    //   playAgainBtn event listener
 playAgainBtn.addEventListener("click", playAgain);
-    // Board Spaces event listeners
 document.querySelector(".boards").addEventListener('click' , gridClick)
 
-//Modal event listeners
+
 document.querySelector("#modal1Btn").addEventListener("click" , modal1Advance)
 document.querySelector("#modal2Btn").addEventListener("click" , modal2Advance)
 document.querySelector("#modal3Btn").addEventListener("click" , modal3Advance)
 
 /*----- functions -----*/
-//function to generate div elements for board and add event listeners
+
 function createBoard () {
     //create the two boards and apend to the section with class boards
     const sectionPlayerBoard = document.querySelector("#playerBoard");
@@ -182,14 +164,6 @@ function createBoard () {
 }
 createBoard();
 
-    // player action function {
-    //   grid click event listener will pull grid reference
-    //   if === ref 
-    //   then alert 'hit' and change grid color red
-    //   else change grid color grey
-    //   grid click event listener will multiply turn by - 1
-    // }
-
 function gridClick (evt) {
     if (evt.target.className === "playerBoard" && shipCount === 0) {
         document.querySelector(`#${evt.target.id}`).style.background = "black"
@@ -210,32 +184,32 @@ function gridClick (evt) {
                 document.querySelector("#cpuBoard").style.visibility = "hidden"
                 document.querySelector("#modal3").style.visibility = "visible"
             }
-            setTimeout(transition, 1000)
+            setTimeout(transition, 400)
         }
-    } else if (evt.target.className === "cpuBoard" && turn > 0) {
+    } else if (evt.target.className === "cpuBoard" && turn > 0 && !(document.querySelector(`#${evt.target.id}`).style.background === "red")) {
             if (cpuShip1 === evt.target.id || cpuShip2 === evt.target.id) {
                 document.querySelector(`#${evt.target.id}`).style.background = "red"
                 playerScore += 1
                 turn *= -1
                 scores()
-                cpuAi()
+                cpuship1 = null
             } else {
                 document.querySelector(`#${evt.target.id}`).style.background = "darkgrey"
                 turn *= -1
-                cpuAi()
             }
         winCheck ()
-    } else if (evt.target.className === "playerBoard" && turn < 0) {
+        setTimeout(cpuAi,100)
+    } else if (evt.target.className === "playerBoard" && turn < 0 && !(document.querySelector(`#${evt.target.id}`).style.background === "red")) {
         if (playerShip1 === evt.target.id || playerShip2 === evt.target.id) {
             document.querySelector(`#${evt.target.id}`).style.background = "red"
             cpuScore += 1
-            winCheck
             turn *= -1
             scores()
         } else {
             document.querySelector(`#${evt.target.id}`).style.background = "darkgrey"
             turn *= -1
         }
+        winCheck()
     }
     
 }
