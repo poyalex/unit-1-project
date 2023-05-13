@@ -6,7 +6,7 @@
   <li> Technologies Used: <br>
     HTML, CSS, Javascript
   <li> Getting started:<br>
-    <a href="https://replit.com/@AlexPoy/UnitOneProject-Battleship">Click here to access the game hosted via a repl.</a>
+    <a href="https://poyalex.github.io/unit-1-project/">Click here to access the game.</a>
   <li> Next Steps: <br>
     -Implement different ship sizes and points<br>
     -implement diferent orientation of the ships<br>
